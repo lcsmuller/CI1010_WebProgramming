@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lucas Müller</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<nav>
+		<span class="name">
+			<img class="avatar" src="avatar.jpeg" alt="Avatar">
+			<h2>Lucas Müller</h2>
+		</span>
+		<ul>
+			<li id="avatar"></li>
+			<li><a href="sobre.html">Sobre</a></li>
+			<li><a href="hobbies.html">Hobbies</a></li>
+			<li><a href="contato.html">Contato</a></li>
+		</ul>
+		<h5>Página desenvolvida para a disciplina de Programação Web (CI1010)</h5>
+	</nav>
+	<span class="container">
+		<span class="content"></span>
+	</span>
+	<script>
+		const links = document.querySelectorAll('nav a');
+		const content = document.querySelector('.content');
+
+		content.innerHTML = fetch('sobre.html')
+								.then(response => response.text())
+								.then(data => {
+									content.innerHTML = data;
+								})
+								.catch(error => console.log(error));
+
+		links.forEach(link => {
+			link.addEventListener('click', e => {
+				e.preventDefault();
+				fetch(link.href)
+					.then(response => response.text())
+					.then(data => {
+						content.innerHTML = data;
+					})
+					.catch(error => console.log(error));
+			});
+		});
+	</script>
+</body>
+</html>
