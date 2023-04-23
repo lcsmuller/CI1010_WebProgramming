@@ -1,0 +1,7 @@
+# Ignore all
+*
+# But these
+!.gitignore
+!README.md
+!*.rb
+!Gemfile
